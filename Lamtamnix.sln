@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lamtamnix.Core", "Lamtamnix.Core\Lamtamnix.Core.csproj", "{D915F711-AB9D-4907-8BAD-950CEA319B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lamtamnix.Examples", "Lamtamnix.Examples\Lamtamnix.Examples.csproj", "{7A58AB03-E28A-4E9B-A533-2CADBA392594}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D915F711-AB9D-4907-8BAD-950CEA319B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D915F711-AB9D-4907-8BAD-950CEA319B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D915F711-AB9D-4907-8BAD-950CEA319B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D915F711-AB9D-4907-8BAD-950CEA319B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A58AB03-E28A-4E9B-A533-2CADBA392594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A58AB03-E28A-4E9B-A533-2CADBA392594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A58AB03-E28A-4E9B-A533-2CADBA392594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A58AB03-E28A-4E9B-A533-2CADBA392594}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
