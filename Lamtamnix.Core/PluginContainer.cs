@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
 
     /// <summary>
     /// Class container with loaded plugins.
@@ -41,26 +42,51 @@
         /// <param name="plugins">List of plugins with related appdomains.</param>
         internal PluginContainer(Dictionary<TPlugin, AppDomain> plugins)
         {
+            Contract.Requires<ArgumentNullException>(plugins != null);
+
             _plugins = plugins;
         }
 
         /// <summary>
-        /// Implementation of <see cref="IDisposable"/>.
-        /// Unload all plugins stored in this container.
+        /// Finalizer of class.
+        /// Used for calling <see cref="Dispose(bool)"/>.
+        /// </summary>
+        ~PluginContainer()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Implementation of <see cref="IDisposable"/> interface.
+        /// Used for calling <see cref="Dispose(bool)"/>.
         /// </summary>
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Disposing this instance.
+        /// Unloads all plugins stored in this container.
+        /// </summary>
+        /// <param name="disposing"></param>
+        private void Dispose(bool disposing)
         {
             if (_disposed)
                 throw new ObjectDisposedException(null);
 
-            foreach (var pluginDomain in _plugins.Values)
+            if (disposing)
             {
-                try
+                foreach (var pluginDomain in _plugins.Values)
                 {
-                    AppDomain.Unload(pluginDomain);
-                }
-                catch (Exception)
-                {
+                    try
+                    {
+                        AppDomain.Unload(pluginDomain);
+                    }
+                    catch (Exception)
+                    {
+                    }
                 }
             }
 
