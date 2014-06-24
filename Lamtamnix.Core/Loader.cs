@@ -22,13 +22,20 @@
         private static int pluginDomainIndex = 1;
 
         /// <summary>
-        /// Loads plugins with specified type loader.
-        /// <remarks>Each plugin will be created in separate domain.</remarks>
+        /// Loads instances of plugins with specified type loader.
+        /// <remarks>
+        ///     <list type="bullet">
+        ///         <item><description>Loader will create single instance of each types from type loader.</description></item>
+        ///         <item><description>Type loader will be created in separate domain.</description></item>
+        ///         <item><description>Each plugin will be created in separate domain.</description></item>
+        ///     </list>
+        /// </remarks>
         /// </summary>
         /// <typeparam name="TPlugin">Type of plugins that will be instantiated.</typeparam>
         /// <typeparam name="TPluginTypeLoader">Type of loader for plugins.</typeparam>
+        /// <param name="loaderArgs">Arguments for constructor of type loader.</param>
         /// <returns>Container with instances of plugins form type loader.</returns>
-        public static PluginContainer<TPlugin> Load<TPlugin, TPluginTypeLoader>(params object[] loaderArgs)
+        public static PluginContainer<TPlugin> LoadInstances<TPlugin, TPluginTypeLoader>(params object[] loaderArgs)
             where TPlugin : BasePlugin
             where TPluginTypeLoader : PluginTypeLoader
         {
@@ -69,12 +76,13 @@
         /// </summary>
         /// <typeparam name="TPlugin">Type of plugins that will be instantiated.</typeparam>
         /// <typeparam name="TPluginTypeLoader">Type of loader for plugins.</typeparam>
+        /// <param name="loaderArgs">Arguments for constructor of type loader.</param>
         /// <returns>Container with instances of plugins form type loader.</returns>
-        public static async Task<PluginContainer<TPlugin>> LoadAsync<TPlugin, TPluginTypeLoader>(params object[] loaderArgs)
+        public static async Task<PluginContainer<TPlugin>> LoadInstancesAsync<TPlugin, TPluginTypeLoader>(params object[] loaderArgs)
             where TPlugin : BasePlugin 
             where TPluginTypeLoader : PluginTypeLoader
         {
-            return await Task.Factory.StartNew(() => Load<TPlugin, TPluginTypeLoader>(loaderArgs));
+            return await Task.Factory.StartNew(() => LoadInstances<TPlugin, TPluginTypeLoader>(loaderArgs));
         }
     }
 }
