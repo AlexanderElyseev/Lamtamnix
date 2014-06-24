@@ -8,9 +8,7 @@
 
     internal partial class MainForm : Form
     {
-        private PluginContainer<MyBasePlugin> container;
-
-        private DirectoryPluginTypeLoader<MyBasePlugin> typeLoader;
+        private PluginContainer<MyBasePlugin> _container;
 
         public MainForm()
         {
@@ -18,24 +16,36 @@
 
             _folderBrowserDialog1.SelectedPath = Application.StartupPath;
             textBox1.Text = _folderBrowserDialog1.SelectedPath;
-            typeLoader = new DirectoryPluginTypeLoader<MyBasePlugin>(Application.StartupPath);
 
             ReloadPlugins();
         }
 
         private async void ReloadPlugins()
         {
-            if (container != null)
-            { 
-                container.Dispose();
+            if (_container != null)
+            {
+                _container.Dispose();
             }
 
-            container = await Loader.LoadAsync<MyBasePlugin, DirectoryPluginTypeLoader<MyBasePlugin>>(Application.StartupPath);
+            _container = await Loader.LoadInstancesAsync<MyBasePlugin, DirectoryPluginTypeLoader<MyBasePlugin>>(Application.StartupPath);
+        }
 
-            listView1.Clear();
-            foreach (MyBasePlugin plugin in container.Plugins)
+        private void UpdateUsages()
+        {
+            int i = 1;
+            listView1.Items.Clear();
+            foreach (var record in _container.GetResourcesUsage())
             {
-                listView1.Items.Add(plugin.GetType().FullName);
+                var items = new[]
+                                {
+                                    i.ToString(),
+                                    record.Value.TotalAllocatedMemorySize.ToString(),
+                                    record.Value.SurvivedMemorySize.ToString(),
+                                    record.Value.TotalProcessorTime.ToString()
+                                };
+
+                listView1.Items.Add(new ListViewItem(items));
+                i++;
             }
         }
 
@@ -53,9 +63,13 @@
             while (!Directory.Exists(_folderBrowserDialog1.SelectedPath));
 
             textBox1.Text = _folderBrowserDialog1.SelectedPath;
-            typeLoader = new DirectoryPluginTypeLoader<MyBasePlugin>(Application.StartupPath);
 
             ReloadPlugins();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            UpdateUsages();
         }
     }
 }

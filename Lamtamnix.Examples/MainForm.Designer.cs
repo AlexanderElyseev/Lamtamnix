@@ -32,10 +32,15 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
+            this._columnPluginId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._columnPluginTotalAllocatedMemory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._columnPluginSurvivedMemory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._columnPluginTotalProcessTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this._folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +49,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.listView1);
@@ -52,14 +58,14 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(376, 186);
+            this.groupBox1.Size = new System.Drawing.Size(756, 458);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(295, 157);
+            this.button2.Location = new System.Drawing.Point(675, 429);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -70,7 +76,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(340, 19);
+            this.button1.Location = new System.Drawing.Point(720, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(30, 20);
             this.button1.TabIndex = 4;
@@ -83,12 +89,36 @@
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._columnPluginId,
+            this._columnPluginTotalAllocatedMemory,
+            this._columnPluginSurvivedMemory,
+            this._columnPluginTotalProcessTime});
             this.listView1.Location = new System.Drawing.Point(94, 45);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(276, 106);
+            this.listView1.Size = new System.Drawing.Size(656, 378);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.List;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // _columnPluginId
+            // 
+            this._columnPluginId.Text = "Id";
+            // 
+            // _columnPluginTotalAllocatedMemory
+            // 
+            this._columnPluginTotalAllocatedMemory.Text = "Total allocated memory (bytes)";
+            this._columnPluginTotalAllocatedMemory.Width = 191;
+            // 
+            // _columnPluginSurvivedMemory
+            // 
+            this._columnPluginSurvivedMemory.Text = "Survived memory (bytes)";
+            this._columnPluginSurvivedMemory.Width = 155;
+            // 
+            // _columnPluginTotalProcessTime
+            // 
+            this._columnPluginTotalProcessTime.Text = "Processor time";
+            this._columnPluginTotalProcessTime.Width = 133;
             // 
             // label2
             // 
@@ -106,7 +136,7 @@
             this.textBox1.Location = new System.Drawing.Point(94, 19);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(240, 20);
+            this.textBox1.Size = new System.Drawing.Size(620, 20);
             this.textBox1.TabIndex = 1;
             // 
             // label1
@@ -118,11 +148,21 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Plugin directory:";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(594, 429);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Update usages";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 211);
+            this.ClientSize = new System.Drawing.Size(781, 483);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -144,6 +184,11 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FolderBrowserDialog _folderBrowserDialog1;
+        private System.Windows.Forms.ColumnHeader _columnPluginId;
+        private System.Windows.Forms.ColumnHeader _columnPluginTotalAllocatedMemory;
+        private System.Windows.Forms.ColumnHeader _columnPluginSurvivedMemory;
+        private System.Windows.Forms.ColumnHeader _columnPluginTotalProcessTime;
+        private System.Windows.Forms.Button button3;
     }
 }
 
