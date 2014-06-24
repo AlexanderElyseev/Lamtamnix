@@ -1,5 +1,6 @@
 <StyleCopSettings Version="105">
   <GlobalSettings>
     <BooleanProperty Name="RulesEnabledByDefault">False</BooleanProperty>
+    <StringProperty Name="MergeSettingsFiles">NoMerge</StringProperty>
   </GlobalSettings>
 </StyleCopSettings>
