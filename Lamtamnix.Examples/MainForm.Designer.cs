@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -36,11 +38,11 @@
             this._columnPluginTotalAllocatedMemory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._columnPluginSurvivedMemory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._columnPluginTotalProcessTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._columnPluginDomainName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this._folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +51,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
@@ -61,6 +64,26 @@
             this.groupBox1.Size = new System.Drawing.Size(756, 458);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(94, 429);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(128, 23);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Increase memoy usage";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.IncreaseMemoryUsageButtonClickHandler);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(594, 429);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Update usages";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -93,7 +116,8 @@
             this._columnPluginId,
             this._columnPluginTotalAllocatedMemory,
             this._columnPluginSurvivedMemory,
-            this._columnPluginTotalProcessTime});
+            this._columnPluginTotalProcessTime,
+            this._columnPluginDomainName});
             this.listView1.Location = new System.Drawing.Point(94, 45);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(656, 378);
@@ -104,21 +128,27 @@
             // _columnPluginId
             // 
             this._columnPluginId.Text = "Id";
+            this._columnPluginId.Width = 47;
             // 
             // _columnPluginTotalAllocatedMemory
             // 
             this._columnPluginTotalAllocatedMemory.Text = "Total allocated memory (bytes)";
-            this._columnPluginTotalAllocatedMemory.Width = 191;
+            this._columnPluginTotalAllocatedMemory.Width = 157;
             // 
             // _columnPluginSurvivedMemory
             // 
             this._columnPluginSurvivedMemory.Text = "Survived memory (bytes)";
-            this._columnPluginSurvivedMemory.Width = 155;
+            this._columnPluginSurvivedMemory.Width = 130;
             // 
             // _columnPluginTotalProcessTime
             // 
             this._columnPluginTotalProcessTime.Text = "Processor time";
-            this._columnPluginTotalProcessTime.Width = 133;
+            this._columnPluginTotalProcessTime.Width = 101;
+            // 
+            // _columnPluginDomainName
+            // 
+            this._columnPluginDomainName.Text = "Domain name";
+            this._columnPluginDomainName.Width = 145;
             // 
             // label2
             // 
@@ -147,16 +177,6 @@
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Plugin directory:";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(594, 429);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Update usages";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // MainForm
             // 
@@ -189,6 +209,8 @@
         private System.Windows.Forms.ColumnHeader _columnPluginSurvivedMemory;
         private System.Windows.Forms.ColumnHeader _columnPluginTotalProcessTime;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ColumnHeader _columnPluginDomainName;
     }
 }
 

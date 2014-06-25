@@ -20,33 +20,10 @@
             ReloadPlugins();
         }
 
-        private async void ReloadPlugins()
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (_container != null)
-            {
-                _container.Dispose();
-            }
-
-            _container = await Loader.LoadInstancesAsync<MyBasePlugin, DirectoryPluginTypeLoader<MyBasePlugin>>(Application.StartupPath);
-        }
-
-        private void UpdateUsages()
-        {
-            int i = 1;
-            listView1.Items.Clear();
-            foreach (var record in _container.GetResourcesUsage())
-            {
-                var items = new[]
-                                {
-                                    i.ToString(),
-                                    record.Value.TotalAllocatedMemorySize.ToString(),
-                                    record.Value.SurvivedMemorySize.ToString(),
-                                    record.Value.TotalProcessorTime.ToString()
-                                };
-
-                listView1.Items.Add(new ListViewItem(items));
-                i++;
-            }
+            ChoosePluginsDirectory();
+            ReloadPlugins();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -54,7 +31,42 @@
             ReloadPlugins();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
+        {
+            UpdateResourcesUsage();
+        }
+
+        /// <summary>
+        /// Button <see cref="button4"/> click handler.
+        /// Increases memory usage of each loaded plugin by calling special method.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The arguments of the event.</param>
+        private void IncreaseMemoryUsageButtonClickHandler(object sender, EventArgs e)
+        {
+            foreach (var plugin in _container.Plugins)
+            {
+                plugin.IncreaseMemoryUsage(100);
+            }
+        }
+
+        /// <summary>
+        /// Reloads all plugins from directory from <see cref="_folderBrowserDialog1"/>.
+        /// Previously loaded plugins will be disposed.
+        /// </summary>
+        private async void ReloadPlugins()
+        {
+            if (_container != null)
+            {
+                _container.Dispose();
+            }
+
+            _container = await Loader.LoadInstancesAsync<MyBasePlugin, DirectoryPluginTypeLoader<MyBasePlugin>>(_folderBrowserDialog1.SelectedPath);
+
+            UpdateResourcesUsage();
+        }
+
+        private void ChoosePluginsDirectory()
         {
             do
             {
@@ -63,13 +75,27 @@
             while (!Directory.Exists(_folderBrowserDialog1.SelectedPath));
 
             textBox1.Text = _folderBrowserDialog1.SelectedPath;
-
-            ReloadPlugins();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void UpdateResourcesUsage()
         {
-            UpdateUsages();
+            int i = 1;
+            listView1.Items.Clear();
+            foreach (var record in _container.GetResourcesUsage())
+            {
+                ResourceUsageInfo info = record.Value;
+                var items = new[]
+                {
+                    i.ToString(),
+                    info.TotalAllocatedMemorySize.ToString(),
+                    info.SurvivedMemorySize.ToString(),
+                    info.TotalProcessorTime.ToString(),
+                    info.DomainFrindlyName
+                };
+
+                listView1.Items.Add(new ListViewItem(items));
+                i++;
+            }
         }
     }
 }
