@@ -80,7 +80,8 @@
                 {
                     SurvivedMemorySize = pluginDomain.MonitoringSurvivedMemorySize,
                     TotalAllocatedMemorySize = pluginDomain.MonitoringTotalAllocatedMemorySize,
-                    TotalProcessorTime = pluginDomain.MonitoringTotalProcessorTime
+                    TotalProcessorTime = pluginDomain.MonitoringTotalProcessorTime,
+                    DomainFrindlyName = pluginDomain.FriendlyName
                 };
                 data[entry.Key] = usageInfo;
             }
