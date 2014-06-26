@@ -18,22 +18,26 @@
             textBox1.Text = _folderBrowserDialog1.SelectedPath;
 
             ReloadPlugins();
+            UpdateCurrentDomainData();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             ChoosePluginsDirectory();
             ReloadPlugins();
+            UpdateCurrentDomainData();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             ReloadPlugins();
+            UpdateCurrentDomainData();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             UpdateResourcesUsage();
+            UpdateCurrentDomainData();
         }
 
         /// <summary>
@@ -46,8 +50,15 @@
         {
             foreach (var plugin in _container.Plugins)
             {
-                plugin.IncreaseMemoryUsage(100);
+                plugin.IncreaseMemoryUsage(1000);
             }
+        }
+
+        private void UpdateCurrentDomainData()
+        {
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            textBox2.Text = currentDomain.FriendlyName;
+            textBox3.Text = currentDomain.GetAssemblies().Length.ToString();
         }
 
         /// <summary>
