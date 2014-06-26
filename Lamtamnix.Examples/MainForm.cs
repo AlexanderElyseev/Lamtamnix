@@ -90,7 +90,8 @@
                     info.TotalAllocatedMemorySize.ToString(),
                     info.SurvivedMemorySize.ToString(),
                     info.TotalProcessorTime.ToString(),
-                    info.DomainFrindlyName
+                    info.DomainFrindlyName,
+                    info.LoadedAssembliesCount.ToString()
                 };
 
                 listView1.Items.Add(new ListViewItem(items));

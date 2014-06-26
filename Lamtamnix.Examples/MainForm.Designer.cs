@@ -39,6 +39,7 @@
             this._columnPluginSurvivedMemory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._columnPluginTotalProcessTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._columnPluginDomainName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._columnPluginDomainLoadedAssemblies = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,13 +62,14 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(756, 458);
+            this.groupBox1.Size = new System.Drawing.Size(811, 413);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(94, 429);
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button4.Location = new System.Drawing.Point(94, 384);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(128, 23);
             this.button4.TabIndex = 7;
@@ -77,7 +79,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(594, 429);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(649, 384);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 6;
@@ -88,7 +91,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(675, 429);
+            this.button2.Location = new System.Drawing.Point(730, 384);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -99,7 +102,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(720, 19);
+            this.button1.Location = new System.Drawing.Point(775, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(30, 20);
             this.button1.TabIndex = 4;
@@ -117,10 +120,11 @@
             this._columnPluginTotalAllocatedMemory,
             this._columnPluginSurvivedMemory,
             this._columnPluginTotalProcessTime,
-            this._columnPluginDomainName});
+            this._columnPluginDomainName,
+            this._columnPluginDomainLoadedAssemblies});
             this.listView1.Location = new System.Drawing.Point(94, 45);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(656, 378);
+            this.listView1.Size = new System.Drawing.Size(711, 333);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -128,7 +132,7 @@
             // _columnPluginId
             // 
             this._columnPluginId.Text = "Id";
-            this._columnPluginId.Width = 47;
+            this._columnPluginId.Width = 39;
             // 
             // _columnPluginTotalAllocatedMemory
             // 
@@ -143,12 +147,17 @@
             // _columnPluginTotalProcessTime
             // 
             this._columnPluginTotalProcessTime.Text = "Processor time";
-            this._columnPluginTotalProcessTime.Width = 101;
+            this._columnPluginTotalProcessTime.Width = 114;
             // 
             // _columnPluginDomainName
             // 
             this._columnPluginDomainName.Text = "Domain name";
-            this._columnPluginDomainName.Width = 145;
+            this._columnPluginDomainName.Width = 160;
+            // 
+            // _columnPluginDomainLoadedAssemblies
+            // 
+            this._columnPluginDomainLoadedAssemblies.Text = "Loaded assemblies";
+            this._columnPluginDomainLoadedAssemblies.Width = 107;
             // 
             // label2
             // 
@@ -166,7 +175,7 @@
             this.textBox1.Location = new System.Drawing.Point(94, 19);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(620, 20);
+            this.textBox1.Size = new System.Drawing.Size(675, 20);
             this.textBox1.TabIndex = 1;
             // 
             // label1
@@ -182,7 +191,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 483);
+            this.ClientSize = new System.Drawing.Size(836, 438);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -211,6 +220,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ColumnHeader _columnPluginDomainName;
+        private System.Windows.Forms.ColumnHeader _columnPluginDomainLoadedAssemblies;
     }
 }
 
