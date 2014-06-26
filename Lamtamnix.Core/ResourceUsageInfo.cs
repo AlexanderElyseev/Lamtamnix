@@ -30,5 +30,10 @@
         /// The name of application domain with plugin (<see cref="AppDomain.FriendlyName"/>).
         /// </summary>
         public string DomainFrindlyName { get; set; }
+
+        /// <summary>
+        /// The count of all loaded assemblies in the application domain with the plugin.
+        /// </summary>
+        public int LoadedAssembliesCount { get; set; }
     }
 }
