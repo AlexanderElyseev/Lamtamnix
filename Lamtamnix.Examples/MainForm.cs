@@ -10,6 +10,8 @@
     {
         private PluginContainer<MyBasePlugin> _container;
 
+        private PluginContainerObserver<MyBasePlugin> _containerObserver;
+
         public MainForm()
         {
             InitializeComponent();
@@ -70,9 +72,16 @@
             if (_container != null)
             {
                 _container.Dispose();
+                _container = null;
+
+                _containerObserver.Dispose();
+                _containerObserver = null;
             }
 
             _container = await Loader.LoadInstancesAsync<MyBasePlugin, DirectoryPluginTypeLoader<MyBasePlugin>>(_folderBrowserDialog1.SelectedPath);
+
+            _containerObserver = new PluginContainerObserver<MyBasePlugin>(_container);
+            _containerObserver.ResourcesUsagesUpdate += (sender, args) => textBox4.BeginInvoke(new Action(() => textBox4.Text += "Text" + args.ResourcesUsage.Count + " "));
 
             UpdateResourcesUsage();
         }
@@ -94,7 +103,7 @@
             listView1.Items.Clear();
             foreach (var record in _container.GetResourcesUsage())
             {
-                ResourceUsageInfo info = record.Value;
+                ResourcesUsageInfo info = record.Value;
                 var items = new[]
                 {
                     i.ToString(),

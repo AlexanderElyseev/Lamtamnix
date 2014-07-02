@@ -5,7 +5,7 @@
     /// <summary>
     /// Class-container with information about usage of system resources by some plugin.
     /// </summary>
-    public sealed class ResourceUsageInfo
+    public sealed class ResourcesUsageInfo
     {
         /// <summary>
         /// Number of bytes that survived the last collection and that are known to be referenced

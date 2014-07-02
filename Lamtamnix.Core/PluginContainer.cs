@@ -64,7 +64,7 @@
         /// <exception cref="ObjectDisposedException">You can not use this instance after disposing.</exception>
         /// <exception cref="InvalidOperationException">You have to enable <see cref="AppDomain.MonitoringIsEnabled"/> before using.</exception>
         /// <returns>Usage of system resources by plugins.</returns>
-        public Dictionary<TPlugin, ResourceUsageInfo> GetResourcesUsage()
+        public Dictionary<TPlugin, ResourcesUsageInfo> GetResourcesUsage()
         {
             if (_disposed)
                 throw new ObjectDisposedException(null);
@@ -72,11 +72,11 @@
             if (!AppDomain.MonitoringIsEnabled)
                 throw new InvalidOperationException("You have to enable appdomain monitoring (AppDomain.MonitoringIsEnabled).");
 
-            Dictionary<TPlugin, ResourceUsageInfo> data = new Dictionary<TPlugin, ResourceUsageInfo>(_plugins.Count);
+            Dictionary<TPlugin, ResourcesUsageInfo> data = new Dictionary<TPlugin, ResourcesUsageInfo>(_plugins.Count);
             foreach (var entry in _plugins)
             {
                 AppDomain pluginDomain = entry.Value;
-                var usageInfo = new ResourceUsageInfo
+                var usageInfo = new ResourcesUsageInfo
                 {
                     SurvivedMemorySize = pluginDomain.MonitoringSurvivedMemorySize,
                     TotalAllocatedMemorySize = pluginDomain.MonitoringTotalAllocatedMemorySize,
@@ -95,7 +95,7 @@
         /// Asynchronous version of <see cref="GetResourcesUsage"/>.
         /// </summary>
         /// <returns>Usage of system resources by plugins.</returns>
-        public async Task<Dictionary<TPlugin, ResourceUsageInfo>> GetResourcesUsageAsync()
+        public async Task<Dictionary<TPlugin, ResourcesUsageInfo>> GetResourcesUsageAsync()
         {
             return await Task.Factory.StartNew(() => GetResourcesUsage());
         }
